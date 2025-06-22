@@ -36,6 +36,6 @@ Soon to be updated
 - Exception handling is the process of dealing with exceptions that occur during the execution of a program.
 
 - When an exception occurs, the program stops executing its normal flow and transfers control to an exception handler that can handle the exception.
-        What would we do if a fire started during a lecture?
+  - What would we do if a fire started during a lecture?
 
 [EOF]
