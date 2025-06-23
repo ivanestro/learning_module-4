@@ -206,6 +206,85 @@ except:
 finally:
       file.write("END OF FILE.")
       file.close()
+```
+
+## WHAT IS LOGGING?
+
+- Logging is the process of keeping track of events that occur when a program is running.
+- The even could be a probllem, an error or simply information about the state of the program
+- A log entry is recorded for each occurence of the event
+
+- Logs can be used to:
+  - monitor the state of the program
+  - assist in the debugging process
+  - provide revelant information for purposes such as auditing
+
+- Types of logs include:
+  - Event Logs
+  - Transaction Logs
+  - Exception Logs
+
+- By default, logging messages are written to the console but can also be written to a file.
+
+- Adding logging:
+  - To incorporate logging into a Python program, the logging module must be imported
+  - Add the following import statement to the top of file
+
+- Severity levels:
+  - The logging module, by default includes 5 levels of severity:
+    - DEBUG
+    - INFO
+    - WARNING
+    - ERROR
+    - CRITICAL
+
+  - Each level has a corresponding logging method:
+
+```cs
+#LECTURE SECTION 5
+
+logging.debug("Debug level message.")
+logging.info("Info level message.")
+logging.warning("Warning level message.")
+logging.error("Error level message.")
+logging.critical("Critical level message.")
+```
+
+- Run the application and note the logging messages in the conspole
+
+- Only those errors at the level of WARNING and above are logged
+
+```cs
+Warning: root: Warning level message
+ERROR: root:Error level message
+CRITICAL: root:Critical level message
+```
+
+## LOGGING CONFIGURATION
+
+- Logging configuration can be set and modified using the basicConfig() method.
+
+- The basicConfig method has been defined with **kwargs as its parameter.
+  - This indicates that all parameters supplied to this method must be done so as keyword arguments.
+  - The keyword arguments for the basicConfig() method that will be used in this course are:
+    - level: Defines the severity level at or above which messages will be logged
+    - filename: When included logging wil be written to the specified file. If excluded, logging by default will be opened to the console.
+    - filemode: If a filename was provided, filemode determines the way in which the file will be opened and processed. The default mode is a which indicates append mode.
+    - format: Defines the format of the logged message. The default format is {level, name, message}
+
+- Add the following logging configuration to the program and discuss:
+
+```cs
+#LECTURE SECTION 1
+logging.basicConfig(level = logging.DEBUG,
+          filename = 'app.log'),
+          filemode = 'w',
+          format = %(asctime)s - %(levelname)s - %(message)s')
+```
+
+- Run the application again and note that logging at level DEBUG and up is logged, and that those messages are written to the file called app.log in the following format:
+
+```cs 
 
 ```
 

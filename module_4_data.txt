@@ -1,0 +1,37 @@
+CEO/Chair of Board,Jo-Anne Sinclair,140000
+COO/VP Operations,Jackson Smith,130000
+CFO/VP Administration,Susan Thomas,120000
+VP Client Services,Richa Kaur,110000
+CIO,Josee Benjamin,140000
+VP Sales & Marketing,Vincent Grey,100000
+Director Financial and Audit Svcs,Rupa Kharki (she/her/hers),95000
+Director Human Resources,Xun Kuang,90000
+Director Legal Services/General Counsel,Stien Pedersen,140000
+Director Information Technology,Sandra Bear,100000
+Director Information Security and CISSO,Gus Blue,100000
+Director Accounting,Sam Kong,90000
+Director Physical Security,Valentine Smith,90000
+Director Facilities,Mariya Kaperski,90000
+Manager:Business Continuity and Disaster Recovery,Abd al-Hamid Alami,85000
+Manager:Internal Audit,Victoria Gray,85000
+Chief Architect,Cheryl Guru,140000
+Manager:Security Architecture,Jean Ngoy,85000
+Solution Architect:Online Banking,Kris Gold,100000
+Manager:Application Solutions,Isaac Smith,90000
+Lead Developer:Online Banking,Payton Frost,85000
+Manager:Operational Risk,Samantha Nettle,90000
+Manager:Vendor Relations,Yolanda Ferreira,90000
+Manager:Purchasing,Samir Hassan,90000
+Manager:Communications,Yuna Aikawa,90000
+Manager Customer Experience and Community Eng.,Jonathan Carberry,90000
+Manager of Sales,Roland Wei,90000
+Manager:Marketing,Pran Singh,90000
+Business Analyst:Online Banking,Linda Analyst,85000
+Manager:Contract Management,Esra Sedge,90000
+Manager:Compliance Management,Pranee Tan,90000
+Manager:IT End User Service Desk,Karmen Spruce,90000
+Manager:IT End User Computing,Haydar Katirci,90000
+Manager:IT Telecom and Infrastructure,Jill Harkness,90000
+Manager:Data Center and Hosting Services,Tim Morrison,90000
+Manager:IT Risk Management,Aleksandr Milosevic,90000
+Manager:IT project management office,Jim Wingnut,90000
