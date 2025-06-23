@@ -22,13 +22,17 @@ RECOMMENDED_INCREASE = 0.20
 try:
     file = open('module_4_data.txt')
     data = file.readlines()
-
+    1/0
     file.close()
     print("File Closed")
 
 except FileNotFoundError as e: 
      print("File does not exist", e)
-        
+
+except Exception as e: 
+      print("Divided by zero exception.", e)
+
+
 #LECTURE SECTION 2
 for record in data:
       items = record.split(',')
