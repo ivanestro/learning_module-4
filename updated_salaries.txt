@@ -1,37 +1,7 @@
-CEO/Chair of Board,Jo-Anne Sinclair,112000.0
-COO/VP Operations,Jackson Smith,104000.0
-CFO/VP Administration,Susan Thomas,96000.0
-VP Client Services,Richa Kaur,88000.0
-CIO,Josee Benjamin,112000.0
-VP Sales & Marketing,Vincent Grey,80000.0
-Director Financial and Audit Svcs,Rupa Kharki (she/her/hers),76000.0
-Director Human Resources,Xun Kuang,72000.0
-Director Legal Services/General Counsel,Stien Pedersen,112000.0
-Director Information Technology,Sandra Bear,80000.0
-Director Information Security and CISSO,Gus Blue,80000.0
-Director Accounting,Sam Kong,72000.0
-Director Physical Security,Valentine Smith,72000.0
-Director Facilities,Mariya Kaperski,72000.0
-Manager:Business Continuity and Disaster Recovery,Abd al-Hamid Alami,68000.0
-Manager:Internal Audit,Victoria Gray,68000.0
-Chief Architect,Cheryl Guru,112000.0
-Manager:Security Architecture,Jean Ngoy,68000.0
-Solution Architect:Online Banking,Kris Gold,80000.0
-Manager:Application Solutions,Isaac Smith,72000.0
-Lead Developer:Online Banking,Payton Frost,68000.0
-Manager:Operational Risk,Samantha Nettle,72000.0
-Manager:Vendor Relations,Yolanda Ferreira,72000.0
-Manager:Purchasing,Samir Hassan,72000.0
-Manager:Communications,Yuna Aikawa,72000.0
-Manager Customer Experience and Community Eng.,Jonathan Carberry,72000.0
-Manager of Sales,Roland Wei,72000.0
-Manager:Marketing,Pran Singh,72000.0
-Business Analyst:Online Banking,Linda Analyst,68000.0
-Manager:Contract Management,Esra Sedge,72000.0
-Manager:Compliance Management,Pranee Tan,72000.0
-Manager:IT End User Service Desk,Karmen Spruce,72000.0
-Manager:IT End User Computing,Haydar Katirci,72000.0
-Manager:IT Telecom and Infrastructure,Jill Harkness,72000.0
-Manager:Data Center and Hosting Services,Tim Morrison,72000.0
-Manager:IT Risk Management,Aleksandr Milosevic,72000.0
-Manager:IT project management office,Jim Wingnut,72000.0
+Manager:IT project management office,
+Manager:IT project management office,
+Jim Wingnut,
+Manager:IT project management office,
+Jim Wingnut,
+72000.0
+End of FILE.

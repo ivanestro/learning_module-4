@@ -34,29 +34,44 @@ except Exception as e:
 
 
 #LECTURE SECTION 2
-for record in data:
-      items = record.split(',')
-      title = items[0]
-      name = items[1]
-      salary = float(items[2])
+try: 
+    if len(data) == 0:
+      raise Exception("No data exists.")
+    
+    else:
+
+      for record in data:
+            items = record.split(',')
+            title = items[0]
+            name = items[1]
+            salary = float(items[2])
       
       #LECTURE SECTION 3
       #REQUIREMENT:  NOTE RECORDS THAT EXCEED OR WILL EXCEED HIGH_SALARY AMOUNT
       salary *= (1 - RECOMMENDED_INCREASE)
       new_data.append([title,name,salary])
 
-
+except Exception as e:
+     print
 
 #LECTURE SECTION 4
-file = open('updated_salaries.txt', 'w')
-for record in new_data:
-      row = ""
-      for index, item in enumerate(record):
-            row += str(item)
-            if index < len(record) - 1:
-                  row += (",")
-      row += '\n'
-      file.write(row)
+try:
+      file = open('updated_salaries.txt', 'w')
+      for record in new_data:
+            row = ""
+            for index, item in enumerate(record):
+                  row += str(item)
+                  if index < len(record) - 1:
+                        row += (",")
+                  row += '\n'
+                  file.write(row)
+
+except:
+      print("Exception writing data")
+
+finally: 
+      file.write("End of FILE.")
+      file.close()
 
 #LECTURE SECTION 5
 print("End of Program")
