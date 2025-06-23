@@ -4,6 +4,10 @@
 
 Introduction to Exception Handling and Troubleshooting
 
+Update 1: Added exception handling to file operations.
+Update 2: Added logging to program
+Update 3: Updated the formula to correctly calculate the updated salary: salary *= (1 + RECOMMENDED_INCREASE)
+
 ## Author
 
 Ivan Estropigan
@@ -285,7 +289,190 @@ logging.basicConfig(level = logging.DEBUG,
 - Run the application again and note that logging at level DEBUG and up is logged, and that those messages are written to the file called app.log in the following format:
 
 ```cs 
-
+2023-04-16 15:36:01,808 - DEBUG - Debug level message
+2023-04-16 15:36:01,808 - INFO - Info level message
+Etc…
 ```
 
+## HIGH_SALARY REQUIREMENT
+
+- One of the expected results is that employee with high salary would be identified.
+- We will use the logging feature to incorportate the requirement to identify the high salary employees:
+
+```cs
+# LECTURE SECTION 3
+
+if salary > HIGH_SALARY:
+    logging.warning(f"{name}'s salary {salary} "
+                  + f"is currently above "
+                  + f"the recommended maximum "
+                  + f"{HIGH_SALARY.}")
+
+if salary * (1 + RECOMMENDED_INCREASE) > HIGH_SALARY:
+      logging.warning(f"{name's} salary {salary} will be"
+                    + f"above the recommended maximum"
+                    + f "of {HIGH_SALARY}"
+                    + f "with the planned "
+                    + f "{RECOMMENDED_INCREASE} increase.")
+```
+- Run the program and note the logging that has taken place.
+
+## LOGGING EXCEPTIONS
+
+- Modify all exception and finally blocks, replace print statements with logging statements.
+
+```cs
+#LECTURE SECTION 1
+
+except FileNotFoundError as e:
+      #print("File does not exist: " e)
+      logging.error('File does not exist.')
+  
+except Exception as e:
+      # print(e)
+
+finally:
+      if file is not None:
+          #print("File Closed")
+          logging.info("File closed")
+```
+
+- Run the application and review the app.log file and the new_salaries.text file.
+
+```cs
+#LECTURE SECTION 2
+except Exception as e:
+      #print(e)
+      logging.error("Exception processing data.")
+
+#LECTURE SECTION 4
+except:
+      #print("Exception writing data.")
+      logging.error("Exception writing data.")
+```
+
+- Run the application and review the app.log file and the new_salaries.txt file
+
+## WHAT IS DEBUGGING?
+
+- Debugging involves defining a set of steps to help effectively identify and solve the problem
+- Below is a list of commonly used steps:
+  - Identify the Problem 
+  - Reproduce the Probelm
+  - Determine the Source of the Problem
+  - Correct the problem through:
+    - Correction of the code
+    - A workaround
+  - Comprehensive Testing
+  - Documenting the problem and solution
+
+## VS CODE DEBUGGER
+
+- Visual studio Code has a built in debugging utility.
+- The python extension in the Visual Studio IDE (Integrated Deelopment Environment) supports debugging.
+
+- Having a debugging utility built directly into the IDE allows the software developer to move seamlessly between debugging and developing without changing their work environment.
+
+
+## DEBUGGING
+
+- Identify the problem 
+
+  - Expected behaviour:
+    1. update_salaries.txt file is created with all employees receiving a 20% increase over their original salares found in module_4_data.txt
+
+  - Actual behaviour:
+    1. updated_salaries.txt file is created but employee salaries did not increase
+
+- Reproduce the Problem
+  - Run the application and note the action taken just prior to the error ocurring:
+  - The last log item just prior to an incorrect salary being written is:
+
+```cs 
+2023-04-16 15:47:17,990 - INFO - File Closed
+```
+
+- Determine the Source of the Problem 
+  - Go to the code locate the logging statement that produced the above log message:
+
+```cs
+logging.info("File Closed")
+
+##LECTURE SECTION 2
+```
+
+- Narrow down the source of the problem starting at LECTURE SECTION 2
+- Determine expected behavior by logging at the first record in the input file:
+
+```cs
+CEO/Chair of Board.Jo-Anne Sinclair, 140000
+```
+
+- Expected results:
+  - Updated salary to $140,000 + 20% increase = $168,000
+  - This record should be logged because it is above $120,000.00
+
+## DEBUGGING BREAKPOINT
+
+- A breakpoint allows an executing program to pause so that the software developer can examine the state of the program at run time.
+
+- When a breakpoint is encountered, the program pauses(but does not terminate)
+  - Add a breakpoint to the first line of code following the File Close logging statement:
+
+## RUN IN DEBUG MODE
+
+- To run the application in Debug mode, you can either click on the Run and Debug icon on the Activity Bar. Or click the run menu opption and choose Start Debugging
+  - Note that execution stops when the breakpoint is encountered.
+  - Note the floating toolbar.
+
+## STEPPING
+
+- Use the floating toolbar to "Step into" the code.
+- There is also Step Over and Step Out
+- Note the Variables in being populated in the variables window on the left
+- Salary is an important variable as it is note a calculating correctly.
+
+## WATCH
+
+- Isolate salary by adding it to the watch window. 
+- Right click on salary in the code editor and choose Add to Watch
+- Continue stepping through the code and watch the value of salary in the watch window
+
+- Initally: 
+```cs
+Salary: 140000.0
+```
+
+- Continue stepping and watch the salary change:
+- Chnages to:
+```cs
+Salary: 112000.0
+```
+
+- This is not the expected value of $168,000.00
+- The line of code which incorrectly modified the salary has been identified:
+```cs
+salary *= (1 - RECOMMENDED_INCREASE)
+```
+
+## FIX
+
+- Stop the debugger:
+- Edit the code:
+salary *= (1 + RECOMMENDED_INCREASE)
+
+- Run in debug mode again with this specific record( and expected results in mind.)
+  - Note the change in salary:
+  Salary: 168000.0
+
+- Stop the debugger
+- Remove the breakpoint
+- Run in real time and review the log file.
+
+## COMPREHENSIVE TESTING
+
+- Ensure each record has been assigned the appropriate new salary
+- Ensure all records that needed to be logged based on the correct salary have been logged.
+
+- Update the READ.md File:
 [EOF]

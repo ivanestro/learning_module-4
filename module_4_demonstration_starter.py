@@ -19,17 +19,16 @@ RECOMMENDED_INCREASE = 0.20
 
 
 #LECTURE SECTION 1
-file = open('module_4_data.txt')
-data = file.readlines()
+try:
+    file = open('module_4_data.txt')
+    data = file.readlines()
 
-file.close()
-print("File Closed")
+    file.close()
+    print("File Closed")
 
-logging.basicConfig(level=logging.DEBUG,
-         filename='app.log', 
-         filemode='w', 
-         format='%(asctime)s - %(levelname)s - %(message)s')
-
+except FileNotFoundError as e: 
+     print("File does not exist", e)
+        
 #LECTURE SECTION 2
 for record in data:
       items = record.split(',')
@@ -40,7 +39,7 @@ for record in data:
       #LECTURE SECTION 3
       #REQUIREMENT:  NOTE RECORDS THAT EXCEED OR WILL EXCEED HIGH_SALARY AMOUNT
       salary *= (1 - RECOMMENDED_INCREASE)
-      new_data.append([title,name,salary]
+      new_data.append([title,name,salary])
 
 
 
