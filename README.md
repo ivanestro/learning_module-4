@@ -175,4 +175,38 @@ except Exception as e:
     - The finally block may be used to help control the flow of logic.
     - Logic could exist to determine determines whether to retry an operation, terminate the program, or take some other action based on the outcome of the try block.
 
+## EXCEPTION HANDLING
+
+- Add exception handling in remainder of program:
+- Double check the filename is fixed
+- Update the README file:
+
+```cs
+##Description 
+Introduction to Exception Handling and Troubleshooting
+Update 1: Added exception handling to file operations.
+```
+
+```cs 
+#LECTURE SECTION 4  
+try:
+  file = open('updated_salaries.txt', 'w')
+  for record in new_data:
+      row = ""
+      for index, item in enumerate(record)
+        row += str(item)
+        if index < len(record) - 1:
+              row += (",")
+      row += '\n'
+      file.write(row)
+
+except:
+      print("Exception writing data.")
+
+finally:
+      file.write("END OF FILE.")
+      file.close()
+
+```
+
 [EOF]
