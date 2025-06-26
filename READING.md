@@ -573,14 +573,13 @@ or you can click the run menu option and choose start debugging:
 ```cs
 **Debug Floating Toolbar**
 Once in Debug mode, the debug toolbar will float above the code editor pane:
-```
 ![alt text](image-2.png)
+```
 
-
+```cs
 **Continue/Pause**
 ![alt text](image-3.png)
 
-```cs
 When a breakpoint is encountered the program pauses so that the software developer can examine the state of the running program (variable values, call stack , etc). To resume running the program until the next breakpoint is encountered, click the Continue/Pause button.
 ```
 
@@ -593,5 +592,48 @@ Once a breakpoint is encountered in an executing program the software developer 
 The step over option will execute the next line of code, but if that next line of code is a call to a user-defined function or user-defined method, the debugger will not enter th efunction or method code, but will just continue on the next line of code.
 ```
 
-**Step Into**
+### Step Into
 
+The step into option will execute the next line of code. If the next line of code is a call to a user-defined function or user-defined method, the debugger will step into that function or method, and allow the developer to execute the function or method code line by line.
+
+Step Out
+Step Out
+
+If the debugging process has led the software developer into a user-defined function or user-defined method, the Step Out option will allow the developer to exit that function or method and return to the calling code. In this case, the code is still executed, but the software developer can bypass examining that code line-by-line.
+
+Restart
+Restart
+
+The Restart button on the floating toolbar will restart the debugging session.
+
+Stop
+Stop
+
+The Stop button on the floating toolbar will stop the debugging session.
+
+Current Line
+When in Debug Mode, the line of code that is next to be executed will appear highlighted and a yellow hollow arrow will appear in the editor margin. In the example below, line 21 will be the next line of code to execute.
+
+Current Line
+
+Watch Window
+When debugging, values of certain variables may be of interest to the software developer. The Watch Window can be used to display these variables. As the code is executing, the watch window variable values will be updated. This can be valuable to help the developer ensure that updates to values are accurate and are taking place when expected. To add variables to the Watch Window, right click on the variable and select 'Add to Watch'.
+
+Watch Window
+
+Call Stack
+The call stack provides a history of the function calls that has led to the current location in the code. This is helpful in the debugging process as it helps to confirm that functions are being executed in the expected order based on the conditions provided.
+
+Call Stack
+
+Debug Console
+The Debug Console can be used to interact with your code while debugging. For example, when you encounter a breakpoint, you can type the name of a variable into the Debug Console and it will display that variable's current value. In the example below, transaction_type was entered into the console beside the '>' prompt. The current value of transaction_type is then displayed.
+
+Debug Console
+
+Review Questions
+What is a bug in programming, and what are the two types of bugs mentioned above?
+What are the steps involved in the debugging process as outlined in the notes?
+What are some best practices for debugging?
+What is a breakpoint?
+What are the step-through options available in the VS Code Debugger?
