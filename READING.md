@@ -558,17 +558,38 @@ Breakpoints can be seton any executable line of code. Breakpoints cannot be set 
     total_deposits += float(amount)
 ```
 
+```cs
 **Using Debug Mode**
 To run the application in debug mode, you either click on the Run and Debug icon on the Activity Bar. Once running the Run and DEbug Icon changes to indicate that the program is currently running in Debug mode:
 ![alt text](image-1.png)
 
+```
+
+```cs
 or you can click the run menu option and choose start debugging:
 ![alt text](image.png)
+```
 
+```cs
 **Debug Floating Toolbar**
 Once in Debug mode, the debug toolbar will float above the code editor pane:
 ![alt text](image-2.png)
+```
 
+```cs
 **Continue/Pause**
 ![alt text](image-3.png)
 When a breakpoint is encountered the program pauses so that the software developer can examine the state of the running program (variable values, call stack , etc). To resume running the program until the next breakpoint is encountered, click the Continue/Pause button.
+```
+
+```cs
+**Step-Through Options**
+Once a breakpoint is encountered in an executing program the software developer can control the pace at which the remaining lines of code execute through a few step options:
+
+![alt text](image-4.png)
+
+The step over option will execute the next line of code, but if that next line of code is a call to a user-defined function or user-defined method, the debugger will not enter th efunction or method code, but will just continue on the next line of code.
+```
+
+**Step Into**
+
