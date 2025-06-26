@@ -573,12 +573,14 @@ or you can click the run menu option and choose start debugging:
 ```cs
 **Debug Floating Toolbar**
 Once in Debug mode, the debug toolbar will float above the code editor pane:
-![alt text](image-2.png)
 ```
+![alt text](image-2.png)
 
-```cs
+
 **Continue/Pause**
 ![alt text](image-3.png)
+
+```cs
 When a breakpoint is encountered the program pauses so that the software developer can examine the state of the running program (variable values, call stack , etc). To resume running the program until the next breakpoint is encountered, click the Continue/Pause button.
 ```
 
