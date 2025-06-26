@@ -235,3 +235,340 @@ The try-except statement is used to catch errors so the program doesn’t crash.
 ## Logging
 
 Logging is the process of keeping track of events that occur when a program is running. The event could be a problem, an error, or simply information about the current state of the program. A log entry is recorded for each occurrence of the event. Logs can be used to monitor the state of the  program, to assist in the debugging process, or to provide relevant information for purposes such as auditing.
+
+Logging can help the software developer gain a better understanding of program flow as well as to learn about obscure scenarios that may not have been considered during the development process.
+
+Logs can store information such as which user initiated a process or the time at which a failure occurred. These little clues can help a developer narrow down a problem or address performance issues etc. When an error occurs a carefully crafted log can provide more insight than what may be provided by an exception message or a stack trace.
+
+## Types of Logs
+
+There are a few types of log files that can be created through the logging process:
+
+- **Event Logs**
+An event log will provide a listing of events as they take place during the execution of a program
+
+```cs
+Timestamp               Event Description
+------------------------------------------------------------
+2023-04-05 09:30:15     User 'john.doe' logged in.
+2023-04-05 09:30:20     User 'john.doe' initiated a bank data update.
+2023-04-05 09:30:45     Bank data update completed.
+2023-04-05 09:30:50     User 'john.doe' logged out.
+```
+
+- **Transaction Logs**
+A transaction log records changes to database data. The primary purpose of a transaction log is to provide the detail necessary to recover a database from an unexpected failure as each transaction that may need restoring after some database failure had occurred.
+
+```cs
+Transaction ID  Timestamp                Transaction Description
+----------------------------------------------------------------------------------------------
+1001            2023-04-05 09:30:32     Bank data successfully retrieved.
+1002            2023-04-05 09:30:35     Parsing bank data.
+1003            2023-04-05 09:30:37     Validating bank data.
+1004            2023-04-05 09:30:40     Bank data validation successful.
+1005            2023-04-05 09:30:42     Updating bank data in database.
+1006            2023-04-05 09:30:45     Bank data update completed.
+```
+
+- **Exception logs**
+An exception log records exceptions as they occur during a program execution. Exception logs provide useful clues to the software developer during the debugging process.
+
+```cs
+Timestamp               Exception Type        Exception Description
+----------------------------------------------------------------------------------------------
+2023-04-05 09:30:25     APIConnectionError    Failed to connect to the external API.
+2023-04-05 09:30:37     DataParsingError      Failed to parse bank data.
+2023-04-05 09:30:42     DataValidationError   Invalid bank data format.
+2023-04-05 09:30:45     DatabaseError         Failed to update bank data in the database.
+```
+
+## Logging Module
+
+Python includes a logging module within its standard library. To use the logging module, it must be imported.
+
+```cs
+import logging
+```
+
+## Severity Levels
+
+The logging Module by default includes 5 standard levels of severity. Those levels (in an increasing order of severity) are:
+    - DEBUGGING
+    - INFO
+    - WARNING
+    - ERROR
+    - CRITICAL
+
+Each level of severity includes a corresponding method which will write the logging message and assign the level of severity to that message:
+
+```cs
+import logging
+
+logging.debug('Debug level message.')
+logging.info('Info level message.')
+logging.warning('Warning level message.')
+logging.error('Error level message.')
+logging.critical('Error level message.')
+```
+
+When the above code executes, the following output will appear. Note the following:
+    - The word **root** is included in the message. **root** is the name the python logging module gives too its default logger. The output is presented by default as **{level: name: message}** format.
+
+```cs
+WARNING:root:Warning level message
+ERROR:root:Error level message
+CRITICAL:root:Critical level message
+```
+
+## Logging Configuration
+
+Logging configuration can be set and modified using the **basicConfig()** method. Note: the naming of the **basicConfig()** method does not follow PEP8 standards as it uses camelCase instead of snake_case. This is because this module was adopted from a logging utility developed in the java programming language and as such has been named using Java standards. The **basicConfig()** method has been defined with **[**kwargs]** as its parameter. This indicates that all parameters supplied to this method must be done so as keywords arguments. The keyword arguments for the **basicConfig()** method that will be used in this course are:
+
+- level: Defines the severity level at or above which messages will be logged.
+
+- filename: When included, logging will be written to the specified file. If excluded, logging, by default, will be to the console. 
+
+- filemode: If a filename was provided, filemode determines the way in which the file will be opened and processed. The default mode is a which indicates append -e.
+
+- format: Defines the format of the logged message. The default format is {level: name: message}.
+
+Below is an example of defining logging configuration for a program using the **basicConfig()** method of the logging module:
+
+```cs
+Note!
+The logging module uses the %-style formatting syntax instead of f-strings. The logging module was introduced in python before the introduction of f-strings. Therefore, the %-style formatting syntax was the only option available for string formatting at the time.
+```
+
+```cs
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                   filename = 'app.log',
+                   filemode = 'w',
+                   format = %(asctime)s - %(levelname)s - %(message)s')
+
+logging.warning('This will get logged to a file')
+```
+
+Based on the above code, the following would be written to a file called app.log:
+
+```cs
+2023-04-06 16:39:20,587 - WARNING - This will get logged to a file
+```
+
+## Logging Exceptions
+
+In the types of log files listed above, an Exception log was included. When exceptions occur, the course of action may be to log the exception as part of the exception handling process. The logging module has an **exception** method which will log at the **ERROR** level of severity, and when used in an **except** block will also provide exception details.
+
+```cs
+import logging
+
+numerator = 5
+denominator = 10
+
+try:
+    quotient = numerator / denominator
+
+except Exception:
+    logging.exception("An exception has occured: ")
+```
+
+When logging using the **exception** message, exception details are included in the log as shown below:
+
+```cs
+2023-04-06 16:47:47,500 - ERROR - An exception has occurred:
+Traceback (most recent call last):
+    File "c:\Users\lauri\Desktop\Module 04\month_end_report.py", line 75, in <module>
+    quotient = numerator / denominator
+ZeroDivisionError: division by zero
+```
+
+```cs
+Note!
+The output below assumes the **BasicConfig** settings provided in the previous example.
+```
+
+## Logging in Classes
+
+Classes is a topic that will be discussed in detail in an upcoming module. However, there may be a need to incoporate logging into a Class. In this section we will briefly discuss classes but only as they pertain to using logging.
+
+Classes have a special method called __init__. This method is essentially used to initialize the class. the __init__ method is an excellent place to set up your logging configuration.
+
+For logging to be able to be used throughout a class, along with the configuration, an extra line of code is needed in the __init__ method.
+
+```cs
+def __init(self):
+    logging.basicConfig(level = logging.DEBUG,
+                       filename = 'app.log',
+                       filemode = 'w',
+                       format = '%(asctime)s - %(levelname)s - %(message)s')
+
+self.logger = logging.getLogger(__name__)
+```
+
+In the above code, the __init__ method is defined. Within the __init__, the logging configuration is also defined. Have a look at the following line of code:
+
+```cs
+self.logging = logging.getLogger(__name__)
+```
+
+This code defines a variable called self.logger. Since this variable is prefixed with self. it makes itself available throughout the class. So anytime you wish to log information in any method of your class, you would log as follows:
+
+```cs
+self.logger.debug("Debug level message ")
+self.logger.info("Info level message ")
+self.logger.warning("Warning level message ")
+self.logger.error("Error level message ")
+self.logger.critical("Critical level message ")
+```
+
+A much more comprehensive discussion on Classes will take place in an upcoming module.
+
+## Programming Challenge
+
+Write a Python program that will take inventory items and their quantities as input from the user. The program should prompt the user to enter an item name followed by its quantity. If the quantity value is numeric, write an INFO statement to the log file indicating the inventory item and its quantity. If the quantity is not numeric, an exception should be raised and an error message should be logged in the log file.
+Assume all of the logging configuration has already been defined for you, you just need to use the logging module to log the error message in the log file.
+The program should keep prompting the user to enter inventory items until the user types 'Q'.
+Example output:
+
+2022-05-02 12:25:05,246 - ERROR - Quantity for item 'Shoes' is not numeric: 'two'
+2022-05-02 12:25:06,178 - INFO - Quantity for item 'Socks' is 10
+2022-05-02 12:25:05,246 - ERROR - Quantity for item 'T-Shirts' is not numeric: 'XXII'
+2022-05-02 12:25:06,178 - INFO - Quantity for item 'Hoodies' is 7
+2022-05-02 12:25:06,178 - INFO - Quantity for item 'Pants' is 20
+
+## Review Questions Logging
+
+1. What is logging, and why is it useful in software development?
+
+Logging is a process of recording information about a program's execution. This information can be normal operations, warnings error messages and debugging details.
+Why is it useful in software development? This is useful because it helps developers find, and fix bugs by showing what the program was doing before and error occurred, it monitors system behavior in real time which can be useful to detect performance issues or failures, and this provides history records of activities, it is also easier to maintain and improve the software over time by how it behaves and lastly shows detail error messages report that are not visible to users.
+
+2. What are the different types of logs that can be created through the logging process?
+
+The different types of logs that can be created through are debug, info, warning, error and critical.
+
+- Debug: is used for details, during debugging examples variables, values, functions entries and exits.
+
+- Info: Confirms that things are working as expected, used for general system events or milestones such as user login successful, backup completed etc.
+
+- Warning: Indicates a problem or unexpected events that stop the program examples would be monitored and low disk space.
+
+- Error: Signifies a problem is preventing a part of the program from functioning properly, requires immediate action such as database connection failed.
+
+- Critical: Severe error that causes the  whole program to stop running and used in emergency situations such as system crash or data loss.
+
+3. What are the five standard levels of severity in the logging module, and how are they used?
+
+- Debug (Level 10)
+Purpose: Used for detailed information that is only good to diagnose a problem.
+
+- Info (Level 20)
+Purpose: Confirms that a a program is working as expected for general information use such as login successfully etc.
+
+- Warning (Level 30)
+Purpose: Used to indicate a problem or unexpected events that stop program.
+
+- Critical (level 40)
+Purpose: It is a severe error that causes the whole program to stop running and used in emergency such as database restore.
+
+
+4. What is the basicConfig() method, and what are the keyword arguments used in it?
+How can logging help in the debugging process?
+
+The basic config method is part of python's logging module. It is used to configure basic settings for logging system such as output format, file destination, and severity level. Should only be called once at the beginning of the program.
+
+- level
+Sets the minimum severity level of messages to be logged (debug, info)
+
+- filename
+Specifies the file to write the logs to then logs are printed to console
+
+- filemode
+Sets the file mode 'w' to overwrite the file or 'a' to append default is 'a'
+
+- format
+Defines the format of the log messages (timestamp, level, message)
+
+- datefmt
+Sets the format date/time in logs if format includes a date/time
+
+- style
+Defines formatting style ('%', '{', or $} Default is '%')
+
+## Debugging
+
+A bug is anything that may cause a program to behave differently than expected. The bug can be a result of:
+
+- Logic Error: Incorrect use of logic constructs can lead to unexpected results. Examples include, exiting a loop too early or having an incorrect outcome to an if/elif construct.
+
+- Typographical Error(typo): Since python variables are dynamically typed, it is easy to mis-type the name of a variable in an assignment statement. Doing so will not update the intended variable, but instead will create a new variable which will lead to unexpected results.
+
+Bugs regardless of their origin, can often be difficult to identify.
+
+## Debugging Process
+
+Debugging involves defining a set of steps to help effectively identify and solve the problem. Below is a list of commonly used steps:
+
+- Identify the problem
+- Reproduce the problem
+- Determine the source of the problem
+- Correct the problem through:
+- A correction of the code
+- A workaround
+- Comprehensive Testing
+- Documenting the problem and solution
+
+## Debugging Best Practices
+
+While some of the suggestions below take place prior to the debugging phase, all of the following support the debugging process:
+
+- Follow coding standards: Before a problem or 'bug' even presents itself, you can set yourself up for debugging success by following coding standards. Having clearly defined variables, appropriate use of whitespace and up to date documentation can all aid to the debugging process.
+
+- Avoid Hard-Coding: When coding avoid using hard coded values. Any time a hard-coded value is used, the code must be searched for all occurrences wheneveer that hard-coded value needs to be modified. Using a constant, or a variable for such values ensures that when changes need to be made, they only need to be made in a single location.
+
+- Write Test Cases: In an upcoming module, you will learn about unit testing. Having good test cases means that when you make a modification to a program (either through debugging or through regular program maintenance) that modification can be validated by running through existing test cases.
+
+- Implementing Logging: Logging can be utilized as a debugging strategy to help verify the accuracy of the code execution as well as to provide insight for application issues/performance.
+
+- Programming Community: There is a whole community of coders out there who may have experienced a similar issue to the one in which you are debugging. There are sites such as Stack Overflow dedicated to support the tricky debugging problems that we often face.
+
+- Remember what you've tried: Keep track of the things you have tried as you debug your code. This will help establish the scope of the problem. Additionally, once the problem has been resolved, the details of what was tried and what ultimately solved the problem, wil lbe a great reference for future similar errors.
+
+## Debugging Utility/Debugger
+
+A debugger is a software tool, often built directly into an Integrated Development Environment (IDE) (or provided as an extension) which allows for code to be paused and examined at run-time. Most debuggers also allow the software developer to execute the code line-by-line as well as stopping at defined points in the program. The software can modify the state of the program by manually setting variable values in an effort to simulate situations that are otherwise difficult to replicate.
+
+## VS Code Debugger
+
+The Python extension in Visual Studio IDE (Integrated Development Environment) supports debugging. Having a debugging utility built directly into the IDE allows the software developer to move seamlessly between debugging and developing without changing their work environment. While there are many features that can be explored within the VS Code Debugger, we will focus on those features most commonly employed:
+
+- **BreakPoint**
+A breakpoint allows an executing program to pause so that the software developer can examine the state of the program at a run time. When a breakpoint is encountered, the program pauses (but does not terminate).
+
+To set a breakpoint, click beside a line of code in the editor margin. A red dot will appear beside the code.
+
+To remove the breakpoint, click on the red dot to toggle it off.
+
+Breakpoints can be seton any executable line of code. Breakpoints cannot be set on empty lines or lines containing comments.
+
+```cs
+# Update the appropriate variables 
+> if transaction_type = 'D':
+    total_deposits += float(amount)
+```
+
+**Using Debug Mode**
+To run the application in debug mode, you either click on the Run and Debug icon on the Activity Bar. Once running the Run and DEbug Icon changes to indicate that the program is currently running in Debug mode:
+![alt text](image-1.png)
+
+or you can click the run menu option and choose start debugging:
+![alt text](image.png)
+
+**Debug Floating Toolbar**
+Once in Debug mode, the debug toolbar will float above the code editor pane:
+![alt text](image-2.png)
+
+**Continue/Pause**
+![alt text](image-3.png)
+When a breakpoint is encountered the program pauses so that the software developer can examine the state of the running program (variable values, call stack , etc). To resume running the program until the next breakpoint is encountered, click the Continue/Pause button.
