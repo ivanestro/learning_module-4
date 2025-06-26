@@ -2,8 +2,7 @@
 
 [Learning Module](READING.md)
 
-Just a test sub directory
-
+Learning Material for more further knowledge
 
 ## Description
 
